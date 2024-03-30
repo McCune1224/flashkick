@@ -1,0 +1,109 @@
+type Query {
+  # Returns the authenticated user
+  currentUser: User
+  # Returns an entrant given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  entrant(id: ID!): Entrant
+  # Returns an event given its id or slug
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  event(id: ID, slug: String): Event
+  # Returns a league given its id or slug
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  league(id: ID, slug: String): League
+  #
+  # Paginated, filterable list of leagues
+  # Arguments
+  # query: [Not documented]
+  leagues(query: LeagueQuery!): LeagueConnection
+  # Returns a participant given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  # isAdmin: [Not documented]
+  participant(id: ID!, isAdmin: Boolean): Participant
+  # Returns a phase given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  phase(id: ID): Phase
+  # Returns a phase group given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  phaseGroup(id: ID): PhaseGroup
+  # Returns a player given an id
+  #
+  # Arguments
+  # id: [Not documented]
+  player(id: ID!): Player
+  # Returns a phase seed given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  seed(id: ID): Seed
+  # Returns a set given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  set(id: ID!): Set
+  # A shop entity
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  shop(id: ID, slug: String): Shop
+  # Returns an stream given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  stream(id: ID!): Streams
+  # Returns all the stream queues for a given tournament
+  #
+  # Arguments
+  # tournamentId: [Not documented]
+  # includePlayerStreams: [Not documented]
+  streamQueue(tournamentId: ID!, includePlayerStreams: Boolean): [StreamQueue]
+  # Returns a team given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  # inviteCode: [Not documented]
+  team(id: ID, slug: String, inviteCode: String): Team
+  # Returns a tournament given its id or slug
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  tournament(id: ID, slug: String): Tournament
+  # Paginated, filterable list of tournaments
+  #
+  # Arguments
+  # query: [Not documented]
+  tournaments(query: TournamentQuery!): TournamentConnection
+  # Returns a user given a user slug of the form user/abc123, or id
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  user(id: ID, slug: String): User
+  # Returns a videogame given its id
+  #
+  # Arguments
+  # id: [Not documented]
+  # slug: [Not documented]
+  videogame(id: ID, slug: String): Videogame
+  # Returns paginated list of videogames matching the search criteria.
+  #
+  # Arguments
+  # query: [Not documented]
+  videogames(query: VideogameQuery!): VideogameConnection
+}

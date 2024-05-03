@@ -22,13 +22,13 @@ func main() {
 
 	app.GET("/", func(c echo.Context) error {
 		var MeQuery struct {
-			Me struct {
-				Name string
+			CurrentUser struct {
+				ID int
 			}
 		}
 		err := startGraphQL.Client.Query(c.Request().Context(), MeQuery, nil)
 		if err != nil {
-			c.JSON(500, err.Error())
+			return c.JSON(500, err.Error())
 		}
 		log.Println(MeQuery)
 		return c.JSON(200, "HIT")

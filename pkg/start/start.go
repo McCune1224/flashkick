@@ -2,7 +2,6 @@ package start
 
 import (
 	"context"
-	"os"
 
 	"github.com/hasura/go-graphql-client"
 	"golang.org/x/oauth2"
@@ -16,7 +15,7 @@ type StartGGClient struct {
 
 func NewStartGGClient(graphQLToken string) *StartGGClient {
 	src := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: os.Getenv("START_GG_TOKEN")},
+		&oauth2.Token{AccessToken: graphQLToken},
 	)
 	httpClient := oauth2.NewClient(context.Background(), src)
 	startGGClient := graphql.NewClient("https://api.start.gg/gql/alpha", httpClient)

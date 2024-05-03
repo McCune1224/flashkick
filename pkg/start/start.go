@@ -1,18 +1,27 @@
 package start
 
-const baseURL = "https://api.start.gg/gql/alpha"
+import (
+	"context"
+	"os"
 
-type (
-	StartGraphQLClient struct {
-		token string
-	}
-	GraphQLConfig struct{}
+	"github.com/hasura/go-graphql-client"
+	"golang.org/x/oauth2"
 )
 
-func NewStartGraphQLClient(token string, config ...GraphQLConfig) *StartGraphQLClient {
-	// TODO: implement config settings for GraphQL
+const baseURL = "https://api.start.gg/gql/alpha"
 
-	// Test query at https://api.start.gg/gql/alpha with token to know if it works
-	gqlClient := graphql.pa
-	return &StartGraphQLClient{token: token}
+type StartGGClient struct {
+	Client *graphql.Client
+}
+
+func NewStartGGClient(graphQLToken string) *StartGGClient {
+	src := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: os.Getenv("START_GG_TOKEN")},
+	)
+	httpClient := oauth2.NewClient(context.Background(), src)
+	startGGClient := graphql.NewClient("https://api.start.gg/gql/alpha", httpClient)
+
+	return &StartGGClient{
+		Client: startGGClient,
+	}
 }
